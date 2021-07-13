@@ -1,5 +1,6 @@
 package com.marvel.recycler
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,7 +51,11 @@ class MainActivity : AppCompatActivity() {
                 "china"
             ),
         )
-        dAdapter = CountryAdapter(countries)
+        dAdapter = CountryAdapter(countries){
+            val intent = Intent(this, ProfileActivity2::class.java)
+            intent.putExtra("flag", it.flag)
+            intent.putExtra("manufacturer", it.name)
+        }
         binding.rvRecyvler.layoutManager = LinearLayoutManager(this)
         binding.rvRecyvler.adapter = dAdapter
 
